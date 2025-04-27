@@ -12,7 +12,7 @@ import pandas as pd
 mcp = FastMCP("GeneService")
 
 GENE_SERVICE_URL='http://113.44.88.128:28080'
-extract_terms_route = '/api/v1/master/gene//mcp-extract-gene'
+extract_terms_route = '/api/v1/master/gene/mcp-extract-gene'
 
 async def fetch_gene_infomation(query: str,userGenes: list) -> Tuple[str, Dict[str, Any]]:
     """
@@ -72,6 +72,7 @@ async def test_request_for_mcp_gene_service(prompt: str,
                                                          extract_terms_route),
                                 json=requests_data) as resp:
             if resp.status != 200:
+                print(resp)
                 print(f"从cgg获取mcp-gene-service信息失败")
                 # log.error(f'Failed to request mcp-gene-service for : {resp.reason}')
                 return None, None
